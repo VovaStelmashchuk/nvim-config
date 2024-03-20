@@ -14,11 +14,21 @@ return {
     end
   },
   {
+    "lukas-reineke/lsp-format.nvim",
+    config = function()
+      require("lsp-format").setup()
+    end
+  },
+  {
     "neovim/nvim-lspconfig",
     config = function()
       local lspconfig = require("lspconfig")
-      lspconfig.lua_ls.setup({})
-      lspconfig.tsserver.setup({})
+
+      lspconfig.lua_ls.setup(
+        { on_attach = require("lsp-format").on_attach }
+      )
+      lspconfig.tsserver.setup()
+
       vim.keymap.set('n', 'D', vim.lsp.buf.hover, {})
       vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, {})
     end
