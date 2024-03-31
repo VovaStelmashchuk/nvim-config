@@ -27,7 +27,10 @@ return {
       lspconfig.lua_ls.setup(
         { on_attach = require("lsp-format").on_attach }
       )
-      lspconfig.tsserver.setup()
+
+      lspconfig.gopls.setup(
+        { on_attach = require("lsp-format").on_attach }
+      )
 
       vim.keymap.set('n', 'D', vim.lsp.buf.hover, {})
       vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, {})
