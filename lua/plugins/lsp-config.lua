@@ -9,7 +9,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason").setup({
-        ensure_installed = { "lua_ls", "gopls" }
+        ensure_installed = { "lua_ls", "gopls", "groovyls" }
       })
     end
   },
@@ -29,6 +29,10 @@ return {
       )
 
       lspconfig.gopls.setup(
+        { on_attach = require("lsp-format").on_attach }
+      )
+
+      lspconfig.groovyls.setup(
         { on_attach = require("lsp-format").on_attach }
       )
 
